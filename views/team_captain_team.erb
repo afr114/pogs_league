@@ -1,0 +1,51 @@
+<h1><%= @team.name() %></h1>
+
+<form action="/new_player" method="post">
+  <div class="form-group">
+    <input id="team_id" name="team_id" type="hidden" value="<%= @team.id() %>">
+
+    <label class="form-label" for="name">Player Name</label>
+    <input name="name" type="text" placeholder="Player Name" id="name" class="form-control" required="true">
+
+    <label for="team_captain">Team Captain?<p>Yes: </label>
+      <input id="yes" name="team_captain" type="radio" value = "yes" checked = "yes">
+      <label for="team_captain">No: </label>
+      <input id="no" name="team_captain" type="radio" value = "no">
+    <br>
+    <button type="submit" class="btn btn-info">Add Player</button>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Player Name</th>
+      <th>Captain</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @players.each() do |player| %>
+    <tr>
+      <td>
+        <%= player.name() %>
+      </td>
+      <td>
+        <%= player.team_captain() %>
+      </td>
+
+      <td><form action = "/team_captain/player/<%= player.id() %>" method="post">
+        <div class="form-group">
+          <input type="hidden" name="_method" value="delete">
+          <input id="team_id" name="team_id" type="hidden" value="<%= @team.id() %>">
+          <button type="submit" class="btn-danger">Delete</button>
+        </div>
+      </form></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+
+<button type="button" class="btn btn-warning btn-lg"><a href="/">
+  <span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+</button>

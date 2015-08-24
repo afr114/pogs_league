@@ -1,6 +1,28 @@
 <h1 align="center">WELCOME</h1>
 <h2 align="center"><a href='/league_manager'>League Manager</a> || <a href='/team_captain'>Team Captain</a></h2>
-
-<% @teams.each() do |team| %>
-<li><a href="/teams<%= team.id() %>"><%= team.name %> </a></li>
-  <% end %>
+<hr>
+<h3>Current Team Standings</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Team Name</th>
+      <th>Wins</th>
+      <th>Losses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @teams.each() do |team| %>
+    <tr>
+      <td>
+        <a href="/teams/<%= team.id() %>"><%= team.name() %></a>
+      </td>
+      <td>
+        <a href="/teams/<%= team.id() %>"><%= team.win() %></a>
+      </td>
+      <td>
+        <a href="/teams/<%= team.id() %>"><%= team.loss() %></a>
+      </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

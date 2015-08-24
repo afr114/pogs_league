@@ -1,0 +1,26 @@
+<h1>TEAM CAPTAIN</h1>
+<h3>Select your team:</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Team Name</th>
+      <th>Wins</th>
+      <th>Losses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @teams.each() do |team| %>
+    <tr>
+      <td>
+        <a href="team_captain/<%= team.id() %>"><%= team.name() %></a>
+      </td>
+      <td>
+        <a href="team_captain/<%= team.id() %>"><%= team.win() %></a>
+      </td>
+      <td>
+        <a href="team_captain/<%= team.id() %>"><%= team.loss() %></a>
+      </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

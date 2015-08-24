@@ -46,3 +46,37 @@ patch('/teams/:id') do
   @team.update({:name => name, :win => win, :loss => loss})
   redirect("/league_manager")
 end
+
+get('/team_captain') do
+  @teams = Team.all()
+  erb(:team_captain)
+end
+
+get('/team_captain/:id') do
+  @players = Player.all()
+  @team = Team.find(params.fetch("id").to_i())
+  erb(:team_captain_team)
+end
+
+post('/new_player') do
+  team_id = params.fetch("team_id")
+  name = params.fetch("name")
+  team_captain = params.fetch("team_captain")
+  if team_captain == "yes"
+    team_captain = true
+  else
+    team_captain = false
+  end
+  new_player = Player.new(:team_id => team_id, :name => name, :team_captain => team_captain)
+  new_player.save()
+  @team = Team.find(params.fetch("team_id").to_i())
+  redirect("team_captain/#{@team.id()}")
+end
+
+delete('/team_captain/player/:id') do
+  @player = Player.find(params.fetch("id").to_i())
+  @player.delete()
+  @players = Player.all()
+  team_id = params.fetch('team_id')
+  redirect("team_captain/#{team_id}")
+end
