@@ -2,5 +2,5 @@
 <h2 align="center"><a href='/league_manager'>League Manager</a> || <a href='/team_captain'>Team Captain</a></h2>
 
 <% @teams.each() do |team| %>
-<li><%= team.name %> <a href="/teams<%= team.id() %>"><li>
+<li><a href="/teams<%= team.id() %>"><%= team.name %> </a></li>
   <% end %>

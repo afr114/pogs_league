@@ -1,14 +1,53 @@
 <h1>League Manager</h1>
 
-<form action="/league_manager/<%=@team.id()%>" method="post">
-  <label for="name">Team Name</label>
-  <input name="name" type="text" placeholder="Team Name" id="name">
+<form action="/new_team" method="post">
+  <div class="form-group">
+  <label class="form-label" for="name">Team Name</label>
+  <input name="name" type="text" placeholder="Team Name" id="name" class="form-control" required="true">
 
-  <label for="wins">Wins</label>
-  <input name="wins" type="text" id="wins">
+  <label class="form-label" for="wins">Wins</label>
+  <input name="wins" type="text" id="wins" placeholder="e.g. 0" class="form-control" required="true">
 
-  <label for="losses">Losses</label>
-  <input name="losses" type="text" placeholder="Team Name" id="losses">
-
-  <button type="submit">Add Team</button>
+  <label class="form-label" for="losses">Losses</label>
+  <input name="losses" type="text" id="losses" placeholder="e.g. 0" class="form-control" required="true">
+<br>
+  <button type="submit" class="btn btn-info">Add Team</button>
+</div>
 </form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Team Name</th>
+      <th>Wins</th>
+      <th>Losses</th>
+      <th></th>
+    </tr>
+  </thead>
+    <tbody>
+      <% @teams.each() do |team| %>
+      <tr>
+        <td>
+            <a href="/teams/<%= team.id() %>"><%= team.name() %></a>
+            </td>
+        <td>
+          <a href="/teams/<%= team.id() %>"><%= team.win() %></a>
+          </td>
+        <td>
+          <a href="/teams/<%= team.id() %>"><%= team.loss() %></a>
+          </td>
+        <td><form action = "/teams/<%= team.id %>" method="post">
+          <div class="form-group">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="btn-danger">Delete</button>
+          </div>
+        </form></td>
+          <% end %>
+      </tr>
+    </tbody>
+  </table>
+
+
+<button type="button" class="btn btn-warning btn-lg"><a href="/">
+  <span class="glyphicon glyphicon-home" aria-hidden="true"></span></a>
+</button>
