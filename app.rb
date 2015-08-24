@@ -32,3 +32,17 @@ delete('/teams/:id') do
   @teams = Team.all()
   redirect("/league_manager")
 end
+
+get('/teams/:id') do
+  @team = Team.find(params.fetch("id").to_i())
+  erb(:team)
+end
+
+patch('/teams/:id') do
+  @team = Team.find(params.fetch("id").to_i())
+  name = params.fetch("name")
+  win = params.fetch("wins")
+  loss = params.fetch("losses").to_i()
+  @team.update({:name => name, :win => win, :loss => loss})
+  redirect("/league_manager")
+end

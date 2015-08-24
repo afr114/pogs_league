@@ -1,0 +1,21 @@
+<h1><%= @team.name() %></h1>
+
+<form action = "/teams/<%= @team.id %>" method="post">
+  <div class="form-group">
+    <input type="hidden" name="_method" value="patch" class="form-control">
+
+    <label class="form-label" for="name">Team Name</label>
+    <input name="name" value ="<%= @team.name %>" type="text" placeholder="Team Name" required="true" id="name" class="form-control">
+
+    <label class="form-label" for="wins">Wins</label>
+    <input name="wins" value ="<%= @team.win %>" type="text" id="wins" placeholder="e.g. 0" required="true"class="form-control">
+
+    <label class="form-label" for="losses">Losses</label>
+    <input name="losses" value ="<%= @team.loss %>" type="text" id="losses" placeholder="e.g. 0" required="true" class="form-control">
+    <br>
+
+    <button type="submit" class="btn btn-info btn-block">Update</button>
+  </div>
+</form>
+
+<a href ="/league_manager">Back</a>
