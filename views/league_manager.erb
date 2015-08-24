@@ -1,0 +1,14 @@
+<h1>League Manager</h1>
+
+<form action="/league_manager/<%=@team.id()%>" method="post">
+  <label for="name">Team Name</label>
+  <input name="name" type="text" placeholder="Team Name" id="name">
+
+  <label for="wins">Wins</label>
+  <input name="wins" type="text" id="wins">
+
+  <label for="losses">Losses</label>
+  <input name="losses" type="text" placeholder="Team Name" id="losses">
+
+  <button type="submit">Add Team</button>
+</form>

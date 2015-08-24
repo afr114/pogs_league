@@ -1,3 +1,6 @@
-<h1>WELCOME</h1>
-<h2><a href='/league_manager.erb'>League Manager</a></h2>
-<h2><a href='/team_captain.erb'>Team Captain</a></h2>
+<h1 align="center">WELCOME</h1>
+<h2 align="center"><a href='/league_manager'>League Manager</a> || <a href='/team_captain'>Team Captain</a></h2>
+
+<% @teams.each() do |team| %>
+<li><%= team.name %> <a href="/teams<%= team.id() %>"><li>
+  <% end %>
